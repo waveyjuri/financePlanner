@@ -18,11 +18,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+    - name: Cache Node modules
+      uses: actions/cache@v3
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        path: my-backend/node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('my-backend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
         
     - name: Install dependencies
       run: |
@@ -41,7 +43,7 @@ jobs:
       run: |
         cd my-backend
         npm run lint
-      continue-on-error: true
+      continue-on-error: false
 
   deploy:
     needs: test
