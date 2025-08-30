@@ -1,0 +1,23 @@
+# services:
+#   - type: web
+#     name: financeplanner-backend
+#     env: node
+#     plan: free
+#     # Für Monorepo: Root Directory auf Backend setzen
+#     rootDir: my-backend
+#     buildCommand: npm ci && npm run build
+#     startCommand: npm start
+#     envVars:
+#       - key: NODE_ENV
+#         value: production
+#       - key: PORT
+#         value: 10000
+#       - key: DATABASE_URL
+#         fromDatabase:
+#           name: financeplanner-db
+#           property: connectionString
+#     healthCheckPath: /api/health
+    
+# databases:
+#   - name: finance-planner-db
+#     plan: free  # PostgreSQL free tier

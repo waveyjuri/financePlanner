@@ -1,20 +1,31 @@
 {
   "name": "my-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js" 
+    "dev": "nodemon index.js",
+    "build": "echo 'Build completed - no build step needed for basic Node.js'",
+    "test": "jest --passWithNoTests",
+    "lint": "eslint . --ext .js,.json --ignore-path .gitignore",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "eslint-define-config": "^2.1.0",
     "express": "^5.1.0",
     "pg": "^8.16.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
   }
 }

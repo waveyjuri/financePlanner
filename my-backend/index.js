@@ -1,13 +1,27 @@
 const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3000;
+const pool = require("./src/db");
 
-app.use(express.json());
+const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello from Render + Node.js!");
+  res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Beispiel-Route mit DB:
+app.get("/users", async (req, res) => {
+  const result = await pool.query("SELECT * FROM users");
+  res.json(result.rows);
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server läuft auf Port ${port}`);
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
